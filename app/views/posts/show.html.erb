@@ -31,13 +31,32 @@
   </article>
 
   <div class="comment-form">
-    <%= form_for @comment do |f| %>
-      <div class="form-group">
-        <%= f.label "Enter your comment" %>
-        <%= f.text_field :body, class: 'form-control' %>
-      </div>
-      <%= f.submit 'Submit', class: 'btn btn-primary' %>
+    <% if user_signed_in? %>
+      <%= form_for ([@post, @post.comments.build]) do |f| %>
+        <div class="form-group">
+          <%= f.label "Enter your comment" %>
+          <%= f.text_field :body, class: 'form-control' %>
+        </div>
+        <input type="text" name="comment[username]" id="comment_username" value="<%= current_user.username %>" style="display: none;">
+        <%= f.submit 'Submit', class: 'btn btn-primary' %>
+      <% end %>
     <% end %>
   </div>
+
+  <h2>Comments (<%= @post.comments.all.length %>)</h2>
+  <ul class="comments-list">
+    <% @post.comments.all.order("created_at DESC").each do |comment| %>
+      <li> 
+        <% if comment.avatar.attached? %>
+          <%= image_tag url_for(current_user.avatar), height: 30, width: 30, class: "img-rounded" %>
+        <% else %>
+          <%= image_tag gravatar_image_url(current_user.email, size: 30), height: 30, width: 30, class: "img-rounded" %>
+        <% end %>
+        <%= comment.body %>
+        </li>
+      <hr>
+    <% end %>
+  </ul>
+  <br><br>
 <% end %>
 
