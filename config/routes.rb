@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   root to: "posts#index"
 
   get 'users/:id/all_posts', to: "posts#all_posts"
+  resources :comments, only: [:new, :create]
 end

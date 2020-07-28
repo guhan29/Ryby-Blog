@@ -6,6 +6,7 @@
       <%= image_tag gravatar_image_url(current_user.email, size: 150), class: "img-circle" %>
     <% end %>
   </center>
+
   <article class="media content-section">
     <h1> <%= @post.title.capitalize %> </h1>
     <hr>
@@ -28,5 +29,15 @@
 
     <%= link_to 'Back', posts_path, class: "btn btn-primary" %>
   </article>
+
+  <div class="comment-form">
+    <%= form_for @comment do |f| %>
+      <div class="form-group">
+        <%= f.label "Enter your comment" %>
+        <%= f.text_field :body, class: 'form-control' %>
+      </div>
+      <%= f.submit 'Submit', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
 <% end %>
 
