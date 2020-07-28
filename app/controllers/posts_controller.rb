@@ -8,6 +8,14 @@ class PostsController < ApplicationController
     # @posts = Post.all.order("created_at DESC").page params[:page]
     @posts = Post.all.order("created_at DESC")
     @user = current_user
+    @all = false
+  end
+
+  def all_posts
+    # @posts = User.where(id: params[:id]).take.posts.all.order("created_at DESC").page params[:page]
+    @posts = User.where(id: params[:id]).take.posts.all.order("created_at DESC")
+    @all = true
+    render "index"
   end
 
   # GET /posts/1

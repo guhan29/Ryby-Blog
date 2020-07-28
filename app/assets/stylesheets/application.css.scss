@@ -14,13 +14,18 @@
  *= require_self
  */
 
-* {
+*, ::after, ::before {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+li a.text-success {
+  color: blue;
+}
 
 .navbar {
   background: #00c6ff;
@@ -52,4 +57,46 @@
   }
   border: 1px solid #e1e1e1;
   padding: 4rem 4rem 4rem 4rem;
+}
+
+
+.content-section {
+    background: #ffffff;
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+.article-title {
+    color: #444444;
+    &:hover {
+      color: #428bca;
+      text-decoration: none;
+    }
+}
+
+.article-content {
+    white-space: pre-line;
+}
+
+.article-img {
+    height: 65px;
+    width: 65px;
+    margin-right: 16px;
+    float: left;
+}
+
+.article-metadata {
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #e3e3e3;
+    a:hover{
+      color: #333;
+      text-decoration: none;
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #444444;
 }
