@@ -7,7 +7,7 @@
       <% if post.user.avatar.attached? %>
         <%= image_tag url_for(post.user.avatar), class: "img-circle article-img" %>
       <% else %>
-        <%= image_tag gravatar_image_url(current_user.email), class: "img-circle article-img" %>
+        <%= image_tag gravatar_image_url("test@example.com"), class: "img-circle article-img" %>
       <% end %>
       <%= content_tag :div, class: "media-body" do %>
         <%= content_tag :div, class: "article-metadata" do %>

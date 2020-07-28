@@ -3,7 +3,7 @@
     <% if @post.user.avatar.attached? %>
       <%= image_tag url_for(@post.user.avatar), height: 150, width: 150, class: "img-circle" %>
     <% else %>
-      <%= image_tag gravatar_image_url(current_user.email, size: 150), class: "img-circle" %>
+      <%= image_tag gravatar_image_url("test@example.com", size: 150), class: "img-circle" %>
     <% end %>
   </center>
 
@@ -38,6 +38,7 @@
           <%= f.text_field :body, class: 'form-control' %>
         </div>
         <input type="text" name="comment[username]" id="comment_username" value="<%= current_user.username %>" style="display: none;">
+        <input type="number" name="comment[user_id]" id="comment_user_id]" value="<%= current_user.id %>" style="display: none;">
         <%= f.submit 'Submit', class: 'btn btn-primary' %>
       <% end %>
     <% end %>
@@ -47,12 +48,13 @@
   <ul class="comments-list">
     <% @post.comments.all.order("created_at DESC").each do |comment| %>
       <li> 
-        <% if comment.avatar.attached? %>
-          <%= image_tag url_for(current_user.avatar), height: 30, width: 30, class: "img-rounded" %>
+        <% if User.find(comment.user_id).avatar.attached? %>
+          <%= image_tag url_for(User.find(comment.user_id).avatar), height: 30, width: 30, class: "img-rounded" %>
         <% else %>
-          <%= image_tag gravatar_image_url(current_user.email, size: 30), height: 30, width: 30, class: "img-rounded" %>
+          <%= image_tag gravatar_image_url("test@example.com", size: 30), height: 30, width: 30, class: "img-rounded" %>
         <% end %>
         <%= comment.body %>
+        <p align="right">By <span style="color: red"> <%= comment.username %> </span> commenteed at: <%= comment.created_at.strftime("%A, %d %B %Y") %></p>
         </li>
       <hr>
     <% end %>
