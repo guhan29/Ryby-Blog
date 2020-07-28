@@ -6,14 +6,14 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     # @posts = Post.all.order("created_at DESC").page params[:page]
-    @posts = Post.all.order("created_at DESC")
+    @posts = Post.all.order("created_at DESC").page params[:page]
     @user = current_user
     @all = false
   end
 
   def all_posts
     # @posts = User.where(id: params[:id]).take.posts.all.order("created_at DESC").page params[:page]
-    @posts = User.where(id: params[:id]).take.posts.all.order("created_at DESC")
+    @posts = User.where(id: params[:id]).take.posts.all.order("created_at DESC").page params[:page]
     @all = true
     render "index"
   end
