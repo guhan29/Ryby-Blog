@@ -15,8 +15,9 @@
         <div class="article-content" style="font-size: 17px; font-family: sans-serif;">
           <%= @post.body %>
         </div>
-
-        <br><br>
+        <br>
+        <%= social_share_button_tag(@post.title) %>
+        <br>
       </div>
     </div>
     <br><br>

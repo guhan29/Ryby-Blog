@@ -18,6 +18,7 @@
           <%= link_to "#{ post.title.capitalize! }", post, class: "article-title" %>
         <% end %>
         <%= content_tag :p, truncate(post.body, length:300), class: "article-content" %>
+        <%= social_share_button_tag(post.title) %>
       <% end %>
     <% end %>
   <% end %>
