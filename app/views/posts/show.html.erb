@@ -1,12 +1,31 @@
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<%= content_tag :div, class: "col-md-8" do %>
+  <center>
+    <% if @post.user.avatar.attached? %>
+      <%= image_tag url_for(@post.user.avatar), height: 150, width: 150, class: "img-circle" %>
+    <% else %>
+      <%= image_tag gravatar_image_url(current_user.email, size: 150), class: "img-circle" %>
+    <% end %>
+  </center>
+  <article class="media content-section">
+    <h1> <%= @post.title.capitalize %> </h1>
+    <hr>
+    <div class="media-body">
+      <div class="article-metadata">
 
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
+        <div class="article-content" style="font-size: 17px; font-family: sans-serif;">
+          <%= @post.body %>
+        </div>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+        <br><br>
+      </div>
+    </div>
+    <br><br>
+    <% if user_signed_in? && @post.user_id == current_user.id %>
+      <%= link_to 'Edit', edit_post_path(@post), class: "btn btn-warning" %> |
+      <%= link_to 'Delete', @post, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %> |
+    <% end %>
+
+    <%= link_to 'Back', posts_path, class: "btn btn-primary" %>
+  </article>
+<% end %>
+
