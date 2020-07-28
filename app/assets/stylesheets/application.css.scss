@@ -13,3 +13,38 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.navbar {
+  background: #00c6ff;
+  background: -webkit-linear-gradient(to right, #0072ff, #00c6ff);
+  background: linear-gradient(to right, #0072ff, #00c6ff);
+}
+
+.navbar-default .navbar-brand {
+  color: white;
+  font-weight: 600;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: white;
+}
+
+.myform {
+  fieldset {
+    font-family: sans-serif;
+    legend {
+      font-size: 25px;
+      font-family: cursive;
+    }
+    p {
+      span {
+        color: red;
+      }
+    }
+  }
+  border: 1px solid #e1e1e1;
+  padding: 4rem 4rem 4rem 4rem;
+}
