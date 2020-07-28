@@ -1,6 +1,14 @@
 <!-- <h2>Sign up</h2> -->
 <div class="row">
   <div class="col-md-5 col-md-offset-3">
+    <center>
+      <% if @user.avatar.attached? %>
+        <%= image_tag url_for(@user.avatar), height: 100, width: 100, class: "img-circle", id: "output" %>
+      <% else %>
+        <%= image_tag gravatar_image_url("test@example.com", size: 100), height: 100, width: 100, class: "img-circle", id: "output" %>
+      <% end %>
+    </center>
+      <br>
     <div class="well myform">
       <fieldset>
         <legend style="color: green;">Sign up</legend>
@@ -14,6 +22,11 @@
             <div class="field form-group">
               <%= f.label :username %><br />
               <%= f.text_field :username, class: "form-control", autofocus: true, autocomplete: "email" %>
+            </div>
+
+            <div class="field form-group">
+              <%= f.label "Profile Image" %><br />
+              <%= f.file_field :avatar, class: "form-control", :onchange => "loadFile(event);" %>
             </div>
 
             <div class="field form-group">
@@ -47,3 +60,34 @@
 </div>
 
 <!-- < render "devise/shared/links" > -->
+<script type="text/javascript">
+    var loadFile = function(event) {
+      var image = document.getElementById('output');
+      image.src = URL.createObjectURL(event.target.files[0]);
+    };
+
+    function changeName() {
+      var formInput = document.getElementById('theInput').value;
+      document.getElementById('newText').innerHTML = formInput;
+    }
+    function changeNumber() {
+      var formInput = document.getElementById('number').value;
+      document.getElementById('newNumber').innerHTML = formInput;
+    }
+
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for(i=0; i<tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for(i=0; i<tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+  
+      evt.currentTarget.className += " active";
+  
+    }
+  </script>
