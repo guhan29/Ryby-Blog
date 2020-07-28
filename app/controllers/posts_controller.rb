@@ -1,10 +1,13 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :current_user, except: [:index, :show, :about]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    # @posts = Post.all.order("created_at DESC").page params[:page]
+    @posts = Post.all.order("created_at DESC")
+    @user = current_user
   end
 
   # GET /posts/1
@@ -14,17 +17,21 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new
+    @post = current_user.posts.new
   end
 
   # GET /posts/1/edit
   def edit
+    if user_signed_in? && @post.user_id == current_user.id
+    else
+      redirect_to root_path
+    end
   end
 
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(post_params)
 
     respond_to do |format|
       if @post.save
