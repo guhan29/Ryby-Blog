@@ -37,7 +37,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Additional gems
 
 # Devise for user authentication
-gem 'devise', '4.5'
+gem 'devise', '4.7.1'
 # Bootstrap-sass
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sassc-rails', '>= 2.1.0'
