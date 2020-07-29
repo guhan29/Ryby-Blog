@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, :current_user, except: [:index, :show, :about]
+  before_action :authenticate_user!, :current_user, except: [:index, :show, :about, :all_posts]
 
   # GET /posts
   # GET /posts.json
