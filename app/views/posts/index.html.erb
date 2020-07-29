@@ -17,7 +17,13 @@
         <%= content_tag :h2, class: "" do %>
           <%= link_to "#{ post.title.capitalize! }", post, class: "article-title" %>
         <% end %>
-        <%= content_tag :p, truncate(post.body, length:300), class: "article-content" %>
+
+        <%= content_tag :p, class: "article-content" do %>
+          <%= truncate(post.body, length:300) %>
+          <span>
+          <%= link_to "Read more", post, class: "link" %>
+          </span>
+        <% end %>
         <%= social_share_button_tag(post.title) %>
       <% end %>
     <% end %>
