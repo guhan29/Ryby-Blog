@@ -18,6 +18,9 @@ class PostsController < ApplicationController
     render "index"
   end
 
+  def about
+  end
+
   # GET /posts/1
   # GET /posts/1.json
   def show

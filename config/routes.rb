@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   # resources :comments, only: [:new, :create]
   # get 'comments/new', to: "comments#new"
   # post '/comments', to: "comments#create"
+  get '/about', to: "posts#about"
 end
